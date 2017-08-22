@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Http, RequestOptions, Headers } from "@angular/http";
+import { ApiConfig } from '../../app/api.config';
 
 
 @Injectable()
 export class LoginProvider {
   public baseUrl:any;
   
-  constructor(public http: Http) {
-    this.baseUrl = `http://localhost:8000/`;
-  }
+  constructor(public http: Http) {}
 
   login(user) {
     let request = {
@@ -25,7 +24,7 @@ export class LoginProvider {
     let option = new RequestOptions({ headers: headers });
     
     return this.http
-      .post(`${this.baseUrl}api/users/login`, request, option)
+      .post(ApiConfig.BASE_URL+'users/login', request, option)
       .map(res => res.json());
   }
 

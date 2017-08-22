@@ -55,8 +55,21 @@ export class LoginPage {
         
         loader.dismiss();
       }, e => {
+        let error = e.json().errors
         
-        this.showAlert(e.json().errors);
+        if (typeof error.password !==  "undefined") {
+          this.showAlert(error.password);
+        }
+        
+        if (typeof error.email !== "undefined") {
+          this.showAlert(error.email);
+        }
+
+        if (typeof error.errors !== "undefined") {
+          this.showAlert(error.errors);
+        }
+
+        
         loader.dismiss();
       });
     }).catch((err) => {

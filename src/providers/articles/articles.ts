@@ -25,7 +25,6 @@ export class ArticlesProvider {
       var headers: Headers = new Headers();
 
       headers.append("Authorization", this.token);
-      headers.append("Access-Control-Allow-Origin", "http://127.0.0.1:8101");
 
       let options = new RequestOptions({ headers: headers });
 
@@ -38,6 +37,18 @@ export class ArticlesProvider {
   getSingleArticle(slug: string) {
     return this.http
       .get(ApiConfig.BASE_URL + "articles/" + slug)
+      .map(res => res.json());
+  }
+
+  saveArticle(request: any) {
+    var headers: Headers = new Headers();
+
+    headers.append("Authorization", this.token);
+
+    let option = new RequestOptions({ headers: headers });
+
+    return this.http
+      .post(ApiConfig.BASE_URL + "articles", request, option)
       .map(res => res.json());
   }
 }
