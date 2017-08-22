@@ -15,20 +15,29 @@ for more info on providers and Angular DI.
 export class ArticlesProvider {
   public token: string;
   constructor(public http: Http, public storage: Storage) {
-    storage.get("userdata").then(val => {
-      this.token = val.token;
-      console.log(this.token);
-    });
+    
   }
   
   getArticles() {
-    var headers: Headers = new Headers();
+    return this.storage.get("userdata").then(val => {
+      this.token = "Token " + val.token;
 
-    headers.append("Allow-Control-Allow-Origin", "*");
-    let options = new RequestOptions({ headers: headers });
+      var headers: Headers = new Headers();
 
+      headers.append("Authorization", this.token);
+      headers.append("Access-Control-Allow-Origin", "http://127.0.0.1:8101");
+
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http
+        .get(ApiConfig.BASE_URL + "articles/feed", options)
+        .map(res => res.json());
+    })
+  }
+
+  getSingleArticle(slug: string) {
     return this.http
-      .get(ApiConfig.BASE_URL+'articles/feed?token='+this.token, options)
-      .map(res => { res.json() });
+      .get(ApiConfig.BASE_URL + "articles/" + slug)
+      .map(res => res.json());
   }
 }
