@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ArticlesDetailPage page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+  <ion-navbar>
+    <ion-title>{{ article?.title }}</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{ article?.author?.image }}">
+      </ion-avatar>
+      <h2>{{ article?.author?.username }}</h2>
+      <p>{{ article?.updatedAt | date: 'longDate' }}</p>
+    </ion-item>
+  </ion-list>
+
+  <h4 ion-text primary> {{ article?.description }} </h4>
+  <p> {{ article?.body }} </p>
+  
+</ion-content>

@@ -20,7 +20,7 @@
   <ion-list>
     <form (ngSubmit) = "login(user)" #heroForm="ngForm">
       <ion-item>
-        <ion-input required type="text" name="email" [(ngModel)]="user.email" placeholder="Username"></ion-input>
+        <ion-input required type="email" name="email" [(ngModel)]="user.email" placeholder="Username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="password" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>

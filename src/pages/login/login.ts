@@ -31,7 +31,6 @@ export class LoginPage {
     public storage: Storage
   ) {
     storage.get('loggedIn').then(val => {
-      console.log(val)
       if (val) {
         navCtrl.setRoot(HomePage);
       }
@@ -54,12 +53,23 @@ export class LoginPage {
         this.storage.set("userdata", data.user);
         this.storage.set("loggedIn", "true");
         
-        console.log(this.loggedIn())
-        
         loader.dismiss();
       }, e => {
+        let error = e.json().errors
         
-        this.showAlert(e.json().errors);
+        if (typeof error.password !==  "undefined") {
+          this.showAlert(error.password);
+        }
+        
+        if (typeof error.email !== "undefined") {
+          this.showAlert(error.email);
+        }
+
+        if (typeof error.errors !== "undefined") {
+          this.showAlert(error.errors);
+        }
+
+        
         loader.dismiss();
       });
     }).catch((err) => {

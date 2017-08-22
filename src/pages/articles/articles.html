@@ -16,6 +16,13 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item (click)="getArticles()">Register</button>
+    <button class="article" ion-item (click)="detailArticle(article)" *ngFor="let article of articles">
+      <h2 ion-text class="title">{{ article.title }}</h2>
+      <p class="updateAt"> {{ article.updatedAt | date: 'longDate' }} </p>
+    </button>
   </ion-list>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab (click)="addArticle()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

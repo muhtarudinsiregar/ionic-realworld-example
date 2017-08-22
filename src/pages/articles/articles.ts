@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ArticlesProvider } from '../../providers/articles/articles';
-
+import { ArticlesDetailPage } from '../articles-detail/articles-detail';
+import { ArticlesAddPage } from '../articles-add/articles-add';
 
 /**
  * Generated class for the ArticlesPage page.
@@ -17,6 +18,8 @@ import { ArticlesProvider } from '../../providers/articles/articles';
 })
 export class ArticlesPage {
   public token: string;
+  public articles: any;
+  public article: any;
 
   constructor(
     public navCtrl: NavController,
@@ -25,13 +28,24 @@ export class ArticlesPage {
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad ArticlesPage");
+    this.getArticles();
   }
 
   getArticles() {
-    this.articleProvider.getArticles().subscribe(res => {
-      console.log(res);
-      
+    return this.articleProvider.getArticles().then(res => {
+      res.subscribe(val => {
+        this.articles = val.articles;
+      });
     });
+  }
+
+  detailArticle(article: any) {
+    this.navCtrl.push(ArticlesDetailPage, {
+      slug: article.slug
+    });
+  }
+
+  addArticle() {
+    this.navCtrl.push(ArticlesAddPage);
   }
 }

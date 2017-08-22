@@ -1,0 +1,34 @@
+<!--
+  Generated template for the ArticlesAddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Article</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <form (ngSubmit)="login(user)" #heroForm="ngForm" id="form-article">
+      <ion-item>
+        <ion-input required type="email" name="email" [(ngModel)]="article.title" placeholder="Title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea required type="text" name="description" [(ngModel)]="article.description" placeholder="Description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-textarea required type="text" name="body" [(ngModel)]="article.body" placeholder="Body"></ion-textarea>
+      </ion-item>
+    </form>
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="button" (click)="saveArticle(article, heroForm)" block [disabled]="heroForm.invalid">Save</button>
+  </div>
+</ion-content>
