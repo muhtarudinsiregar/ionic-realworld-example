@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ArticlesProvider } from '../../providers/articles/articles';
 import { ArticlesDetailPage } from '../articles-detail/articles-detail';
+import { ArticlesAddPage } from '../articles-add/articles-add';
 
 /**
  * Generated class for the ArticlesPage page.
@@ -42,5 +43,9 @@ export class ArticlesPage {
     this.navCtrl.push(ArticlesDetailPage, {
       slug: article.slug
     });
+  }
+
+  addArticle() {
+    this.navCtrl.push(ArticlesAddPage);
   }
 }

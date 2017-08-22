@@ -16,10 +16,19 @@ import { LoginPage } from "../pages/login/login";
 import { ArticlesPage } from '../pages/articles/articles';
 import { ArticlesProvider } from '../providers/articles/articles';
 import { ArticlesDetailPage } from '../pages/articles-detail/articles-detail';
+import { ArticlesAddPage } from '../pages/articles-add/articles-add';
 
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, LoginPage, ArticlesPage, ArticlesDetailPage],
+  declarations: [
+    MyApp,
+    HomePage,
+    ListPage,
+    LoginPage,
+    ArticlesPage,
+    ArticlesDetailPage,
+    ArticlesAddPage
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -28,7 +37,15 @@ import { ArticlesDetailPage } from '../pages/articles-detail/articles-detail';
     FormsModule
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, LoginPage, ArticlesPage, ArticlesDetailPage],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    ListPage,
+    LoginPage,
+    ArticlesPage,
+    ArticlesDetailPage,
+    ArticlesAddPage
+  ],
   providers: [
     StatusBar,
     SplashScreen,
