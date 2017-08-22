@@ -31,7 +31,6 @@ export class LoginPage {
     public storage: Storage
   ) {
     storage.get('loggedIn').then(val => {
-      console.log(val)
       if (val) {
         navCtrl.setRoot(HomePage);
       }
@@ -53,8 +52,6 @@ export class LoginPage {
 
         this.storage.set("userdata", data.user);
         this.storage.set("loggedIn", "true");
-        
-        console.log(this.loggedIn())
         
         loader.dismiss();
       }, e => {

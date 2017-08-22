@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Http, RequestOptions, Headers, RequestMethod } from "@angular/http";
+import { Http, RequestOptions, Headers } from "@angular/http";
 
 
 @Injectable()
@@ -22,7 +22,8 @@ export class LoginProvider {
 
     headers.append("content-type", "application/json");
 
-    let option = new RequestOptions({headers: headers});
+    let option = new RequestOptions({ headers: headers });
+    
     return this.http
       .post(`${this.baseUrl}api/users/login`, request, option)
       .map(res => res.json());
